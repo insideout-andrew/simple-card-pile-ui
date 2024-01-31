@@ -193,6 +193,9 @@ Example:
 ## To Do List
 - Add support for multiple hands to use the same card pile
 - Add more shuffle methods
+- Add more sort methods
+- Document new properties/methods into the read me
+- Add different icons for dropzones/debugger
 
 <a name="thanks"></a>
 ## Thanks to
@@ -201,5 +204,6 @@ Example:
 - https://linktr.ee/bramwellgames
 - https://www.reddit.com/r/godot
 
-## Version
-The current version of the project is 1.0.0
+---
+
+Version 1.0.0
