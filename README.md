@@ -75,7 +75,7 @@ This plugin provides a flexible and customizable card pile user interface for th
 | PackedScene | extended_card_ui | null | A PackedScene for your extended/inherited `CardUI` scene.
 | *Pile Positions* |-|-|-
 | Vector2 | draw_pile_position | Vector2(20, 460) | Determines the position of the draw pile on the game screen.
-| Vector2 | hand_pile_position | Vector2(630, 460) | Determines the position of the hand pile on the game screen.ca
+| Vector2 | hand_pile_position | Vector2(630, 460) | Determines the position of the hand pile on the game screen.
 | Vector2 | discard_pile_position | Vector2(1250, 460) | Determines the position of the discard pile on the game screen.
 | *Pile displays* |-|-|-
 | int | stack_display_gap | 8 | Sets the gap between displayed cards in a stack.
