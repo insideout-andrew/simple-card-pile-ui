@@ -1,0 +1,210 @@
+[gd_scene load_steps=15 format=3 uid="uid://bt2x5ecxjo2vu"]
+
+[ext_resource type="Script" path="res://example_2/example.gd" id="1_xx0ud"]
+[ext_resource type="Texture2D" uid="uid://bddymiv4rv8kw" path="res://assets/white-circle.png" id="2_7nbk5"]
+[ext_resource type="Script" path="res://example_2/example__dropzone__enemy.gd" id="3_xajcs"]
+[ext_resource type="Texture2D" uid="uid://b0ymf1fwfgbss" path="res://assets/enemy_crab.png" id="4_61gq4"]
+[ext_resource type="Texture2D" uid="uid://3sjbqh1m34dc" path="res://assets/enemy_bee.png" id="5_hv7g6"]
+[ext_resource type="Script" path="res://example_2/example__dropzone__upgrade.gd" id="6_lc55u"]
+[ext_resource type="Script" path="res://example_2/example__dropzone__non-attack.gd" id="7_tllj1"]
+[ext_resource type="Texture2D" uid="uid://bpjxsk1mxfl77" path="res://assets/1x1_#ffffffff.png" id="8_7o08i"]
+[ext_resource type="Script" path="res://addons/simple_card_pile_ui/card_pile_ui.gd" id="9_kjsa2"]
+[ext_resource type="PackedScene" uid="uid://dn2ej8wtxey2u" path="res://example_2/example__card_ui.tscn" id="10_nkrx5"]
+
+[sub_resource type="Curve" id="Curve_noha0"]
+min_value = -15.0
+max_value = 15.0
+_data = [Vector2(0, -15), 0.0, 30.0, 0, 1, Vector2(1, 15), 30.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7lcs2"]
+max_value = 40.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504464, 35.3344), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ft1ui"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_mm80a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Example" type="Node2D"]
+script = ExtResource("1_xx0ud")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 0.254902, 1)
+offset_left = 1304.0
+offset_top = 264.0
+offset_right = 1376.0
+offset_bottom = 336.0
+texture = ExtResource("2_7nbk5")
+
+[node name="ManaLabel" type="Label" parent="."]
+offset_left = 1263.0
+offset_top = 273.0
+offset_right = 1423.0
+offset_bottom = 344.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "4"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0, 1, 1, 1)
+offset_left = 1304.0
+offset_top = 184.0
+offset_right = 1376.0
+offset_bottom = 256.0
+texture = ExtResource("2_7nbk5")
+
+[node name="BlockLabel" type="Label" parent="."]
+offset_left = 1263.0
+offset_top = 192.0
+offset_right = 1423.0
+offset_bottom = 263.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="EndTurnButton" type="Button" parent="."]
+offset_left = 1296.0
+offset_top = 368.0
+offset_right = 1374.0
+offset_bottom = 399.0
+text = "End Turn"
+
+[node name="CrabCardDropzone" type="Control" parent="." node_paths=PackedStringArray("card_pile_ui")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 816.0
+offset_top = 40.0
+offset_right = 1008.0
+offset_bottom = 304.0
+script = ExtResource("3_xajcs")
+hp = 75
+card_pile_ui = NodePath("../CardPileUI")
+
+[node name="Crab" type="TextureRect" parent="CrabCardDropzone"]
+layout_mode = 0
+offset_right = 168.0
+offset_bottom = 240.0
+texture = ExtResource("4_61gq4")
+
+[node name="Label" type="Label" parent="CrabCardDropzone"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 168.0
+offset_right = 176.0
+offset_bottom = 191.0
+text = "30"
+horizontal_alignment = 1
+
+[node name="BeeCardDropzone" type="Control" parent="." node_paths=PackedStringArray("card_pile_ui")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 384.0
+offset_top = 64.0
+offset_right = 576.0
+offset_bottom = 280.0
+script = ExtResource("3_xajcs")
+card_pile_ui = NodePath("../CardPileUI")
+
+[node name="Bee" type="TextureRect" parent="BeeCardDropzone"]
+layout_mode = 0
+offset_right = 168.0
+offset_bottom = 240.0
+texture = ExtResource("5_hv7g6")
+
+[node name="Label" type="Label" parent="BeeCardDropzone"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 152.0
+offset_right = 144.0
+offset_bottom = 175.0
+text = "30"
+horizontal_alignment = 1
+
+[node name="UpgradeCardDropzone" type="Control" parent="." node_paths=PackedStringArray("card_pile_ui")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 64.0
+offset_right = 216.0
+offset_bottom = 255.0
+script = ExtResource("6_lc55u")
+card_pile_ui = NodePath("../CardPileUI")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="UpgradeCardDropzone"]
+layout_mode = 0
+offset_right = 170.0
+offset_bottom = 183.0
+text = "Drop Card to Upgrade
+Cost: 1 mana"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlockCardDropzone" type="Control" parent="." node_paths=PackedStringArray("card_pile_ui")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 264.0
+offset_right = 1120.0
+offset_bottom = 344.0
+script = ExtResource("7_tllj1")
+card_pile_ui = NodePath("../CardPileUI")
+
+[node name="TextureRect" type="TextureRect" parent="BlockCardDropzone"]
+modulate = Color(1, 1, 1, 0.101961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_7o08i")
+
+[node name="CardPileUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("9_kjsa2")
+json_card_database_path = "res://example_2/example__card_database.json"
+json_card_collection_path = "res://example_2/example__card_collection.json"
+extended_card_ui = ExtResource("10_nkrx5")
+click_draw_pile_to_draw = false
+drag_when_clicked = false
+hand_rotation_curve = SubResource("Curve_noha0")
+hand_vertical_curve = SubResource("Curve_7lcs2")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+z_index = 4000
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -44.0
+offset_right = 240.0
+offset_bottom = 44.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ft1ui")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Card Description here"
+
+[node name="TargetingLine2D" type="Line2D" parent="."]
+visible = false
+z_index = 4000
+points = PackedVector2Array(0, 0, 100, 0)
+width_curve = SubResource("Curve_mm80a")
+
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

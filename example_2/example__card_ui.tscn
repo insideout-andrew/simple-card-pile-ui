@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://dn2ej8wtxey2u"]
+
+[ext_resource type="PackedScene" uid="uid://ce07n5qa1axee" path="res://addons/simple_card_pile_ui/card_ui.tscn" id="1_2tltw"]
+[ext_resource type="Script" path="res://example_2/example__card_ui.gd" id="2_5m5c1"]
+[ext_resource type="Texture2D" uid="uid://g3plv60jpgat" path="res://assets/card_attack.png" id="3_mchl8"]
+[ext_resource type="Texture2D" uid="uid://bddymiv4rv8kw" path="res://assets/white-circle.png" id="4_t0rpj"]
+
+[sub_resource type="Theme" id="Theme_4n3ye"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+
+[node name="CardUI" instance=ExtResource("1_2tltw")]
+theme = SubResource("Theme_4n3ye")
+script = ExtResource("2_5m5c1")
+value = 0
+type = ""
+cost = 0
+description = ""
+
+[node name="FrontFaceTextureRect" parent="." index="1"]
+texture = ExtResource("3_mchl8")
+
+[node name="TextureRect" type="TextureRect" parent="FrontFaceTextureRect" index="0"]
+modulate = Color(1, 0.980392, 0.47451, 1)
+layout_mode = 0
+offset_left = 117.0
+offset_top = 12.0
+offset_right = 157.0
+offset_bottom = 52.0
+texture = ExtResource("4_t0rpj")
+
+[node name="TextureRect2" type="TextureRect" parent="FrontFaceTextureRect" index="1"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 12.0
+offset_right = 57.0
+offset_bottom = 52.0
+texture = ExtResource("4_t0rpj")
+
+[node name="CostLabel" type="Label" parent="FrontFaceTextureRect" index="2"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 15.0
+offset_right = 177.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 24
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PowerLabel" type="Label" parent="FrontFaceTextureRect" index="3"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 16.0
+offset_right = 76.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 24
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="FrontFaceTextureRect" index="4"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 176.0
+offset_right = 164.0
+offset_bottom = 210.0
+theme_override_font_sizes/font_size = 24
+text = "Nice Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TypeLabel" type="Label" parent="FrontFaceTextureRect" index="5"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 206.0
+offset_right = 163.0
+offset_bottom = 240.0
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 12
+text = "Type: Attack"
+horizontal_alignment = 1
+vertical_alignment = 1

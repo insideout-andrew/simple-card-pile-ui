@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs2vgjwuarxm5"]
+
+[ext_resource type="PackedScene" uid="uid://ce07n5qa1axee" path="res://addons/simple_card_pile_ui/card_ui.tscn" id="1_ruooe"]
+[ext_resource type="Script" path="res://example/example__card_ui.gd" id="2_pd27j"]
+[ext_resource type="Texture2D" uid="uid://dp7k4aq6freb1" path="res://assets/card_clubs_02.png" id="4_dslc1"]
+
+[node name="ExampleCardUI" instance=ExtResource("1_ruooe")]
+script = ExtResource("2_pd27j")
+
+[node name="FrontFaceTextureRect" parent="." index="1"]
+texture = ExtResource("4_dslc1")
+
+[node name="Label" type="Label" parent="FrontFaceTextureRect" index="0"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 212.0
+offset_right = 167.0
+offset_bottom = 235.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 16
+text = "Nice Name Here"
+vertical_alignment = 1

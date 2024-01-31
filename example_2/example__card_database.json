@@ -1,0 +1,51 @@
+[
+  {
+	"nice_name": "Slice",
+	"texture_path": "res://assets/card_attack.png",
+	"backface_texture_path": "res://assets/card_back.png",
+	"resource_script_path": "res://example_2/example__card_data__attack.gd",
+	"type": "Attack",
+	"power": 1,
+	"cost": 1,
+	"description": "Deal {value} damage"
+  },
+  {
+	"nice_name": "Dice",
+	"texture_path": "res://assets/card_dice.png",
+	"backface_texture_path": "res://assets/card_back.png",
+	"resource_script_path": "res://example_2/example__card_data__attack.gd",
+	"type": "Attack",
+	"power": 3,
+	"cost": 2,
+	"description": "Deal {value} damage"
+  },
+  {
+	"nice_name": "Big Axe",
+	"texture_path": "res://assets/card_big_attack.png",
+	"backface_texture_path": "res://assets/card_back.png",
+	"resource_script_path": "res://example_2/example__card_data__attack__big_axe.gd",
+	"type": "Attack",
+	"power": 8,
+	"cost": 3,
+	"description": "Violently deal {value} damage",
+  },
+  {
+	"nice_name": "Dodge",
+	"texture_path": "res://assets/card_block.png",
+	"backface_texture_path": "res://assets/card_back.png",
+	"resource_script_path": "res://example_2/example__card_data__block.gd",
+	"type": "Block",
+	"block_amount": 3,
+	"cost": 1,
+	"description": "Gain {value} block"
+  },
+  {
+	"nice_name": "Shake",
+	"texture_path": "res://assets/card_shake.png",
+	"backface_texture_path": "res://assets/card_back.png",
+	"resource_script_path": "res://example_2/example__card_data__shake.gd",
+	"type": "Power",
+	"cost": 0,
+	"description": "Gain [wave]a ton[/wave] of mana",
+  }
+]
