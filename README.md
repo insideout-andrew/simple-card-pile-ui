@@ -130,7 +130,7 @@ This plugin provides a flexible and customizable card pile user interface for th
 | card_hovered(card: CardUI) | Indicates when a card is being hovered over |
 | card_unhovered(card: CardUI) | Indicates when a card is no longer being hovered over |
 | card_clicked(card: CardUI) | Signals a click event on a card |
-| card_dropped(card: CardUI) | Signals when a card is dropped in a particular location |
+| card_dropped(card: CardUI) | Signals when a clicked card has been dropped |
 | card_removed_from_game(card: CardUI) | Signals the removal of a card from the overall game |
 
 ---
