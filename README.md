@@ -196,6 +196,7 @@ Example:
 - Add more sort methods
 - Document new properties/methods into the read me
 - Add different icons for dropzones/debugger
+- Add different layout options for dropzones
 
 <a name="thanks"></a>
 ## Thanks to
