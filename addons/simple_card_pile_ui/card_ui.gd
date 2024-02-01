@@ -19,7 +19,6 @@ var backface_texture : String
 var is_clicked := false
 var mouse_is_hovering := false
 var target_position := Vector2.ZERO
-var speed := 0.2
 var return_speed := 0.2
 var hover_distance := 10
 var drag_when_clicked := true
@@ -63,7 +62,7 @@ func _card_can_be_interacted_with():
 		# check for cards in dropzone
 		var dropzone = parent.get_card_dropzone(self)
 		if dropzone:
-			valid = dropzone.get_top_card() == self
+			valid = dropzone.get_top_card() == self and not parent.is_any_card_ui_clicked()
 	return valid
 			
 
@@ -132,7 +131,7 @@ func _process(_delta):
 	if is_clicked and drag_when_clicked:
 		target_position = get_global_mouse_position() - custom_minimum_size * 0.5
 	if is_clicked:
-		position = lerp(position, target_position, speed)
-	else:
+		position = target_position
+	elif position != target_position:
 		position = lerp(position, target_position, return_speed)
 		
