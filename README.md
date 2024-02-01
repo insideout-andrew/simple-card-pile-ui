@@ -103,20 +103,20 @@ This plugin provides a flexible and customizable card pile user interface for th
 
 | Return  | Name                                     | Description                                                |
 |---------|------------------------------------------|------------------------------------------------------------|
-| void    | create_card_in_dropzone                  | Creates a new instance of the named card in the given dropzone|
-| void    | create_card_in_pile                      | Creates a new instance of the named card in the given pile    |
-| void    | discard_at                               | Perform a typical "discard" action, moving card from the hand to the discard pile|
-| void    | draw                                     | Perform a typical "draw" action, moving cards from the draw pile to the hand|
-| bool    | hand_is_at_max_capacity                   | Checks if hand is at max_capacity (any more cards added to it will be discarded)|
+| void    | create_card_in_dropzone(nice_name : String, dropzone : CardDropzone) | Creates a new instance of the named card in the given dropzone|
+| void    | create_card_in_pile(nice_name : String, pile_to_add_to : Piles) | Creates a new instance of the named card in the given pile    |
+| void    | discard_at(index : int) | Perform a typical "discard" action, moving card from the hand to the discard pile|
+| void    | draw(amount : int = 1) | Perform a typical "draw" action, moving cards from the draw pile to the hand|
+| bool    | hand_is_at_max_capacity() | Checks if hand is at max_capacity (any more cards added to it will be discarded)|
 | CardDropzone | get_card_dropzone(card : CardUI ) | Returns the current dropzone of a given card
-| CardUI  | get_card_in_pile_at                      | Returns a piles card at a given index|
-| Array[CardUI]   | get_cards_in_pile                        | Returns an array of cards from the specified pile|
-| int     | get_card_pile_size                       | Returns the number of cards in a given pile|
-| void    | remove_card_from_game                    | Removes the specified card from the game|
-| void    | reset                                    | Resets all cards to the collection's initial state |
-| void    | set_card_dropzone                        | Moves the specified card to the designated CardDropzone|
-| void    | set_card_pile                            | Moves the specified card to the designated pile|
-| void    | sort_hand                                | Sort the hand using a custom function|
+| CardUI  | get_card_in_pile_at(pile : Piles, index : int) | Returns a piles card at a given index|
+| Array[CardUI]   | get_cards_in_pile(pile : Piles) | Returns an array of cards from the specified pile|
+| int     | get_card_pile_size(pile : Piles) | Returns the number of cards in a given pile|
+| void    | remove_card_from_game(card : CardUI) | Removes the specified card from the game|
+| void    | reset() | Resets all cards to the collection's initial state |
+| void    | set_card_dropzone(card : CardUI, dropzone : CardDropzone) | Moves the specified card to the designated CardDropzone|
+| void    | set_card_pile(card : CardUI, pile : Piles) | Moves the specified card to the designated pile|
+| void    | sort_hand(sort_func : Callable) | Sort the hand using a custom function|
 
 <a name="card-pile-ui-signals"></a>
 ## CardPileUI Signals
