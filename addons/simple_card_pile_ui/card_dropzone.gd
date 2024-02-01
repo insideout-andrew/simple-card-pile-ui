@@ -5,6 +5,8 @@ class_name CardDropzone extends Control
 @export var max_stack_display := 6
 @export var card_ui_face_up := true
 @export var can_drag_top_card := true
+@export var held_card_direction := true
+@export var layout : CardPileUI.PilesCardLayouts = CardPileUI.PilesCardLayouts.up
 
 var _held_cards := []
 
@@ -46,10 +48,26 @@ func _update_target_positions():
 	for i in _held_cards.size():
 		var card_ui = _held_cards[i]
 		var target_pos = position
-		if i <= max_stack_display:
-			target_pos.y -= i * stack_display_gap
-		else:
-			target_pos.y -= stack_display_gap * max_stack_display
+		if layout == CardPileUI.PilesCardLayouts.up:
+			if i <= max_stack_display:
+				target_pos.y -= i * stack_display_gap
+			else:
+				target_pos.y -= stack_display_gap * max_stack_display
+		elif layout == CardPileUI.PilesCardLayouts.down:
+			if i <= max_stack_display:
+				target_pos.y += i * stack_display_gap
+			else:
+				target_pos.y += stack_display_gap * max_stack_display
+		elif layout == CardPileUI.PilesCardLayouts.right:
+			if i <= max_stack_display:
+				target_pos.x += i * stack_display_gap
+			else:
+				target_pos.x += stack_display_gap * max_stack_display
+		elif layout == CardPileUI.PilesCardLayouts.left:
+			if i <= max_stack_display:
+				target_pos.x -= i * stack_display_gap
+			else:
+				target_pos.x -= stack_display_gap * max_stack_display
 		if card_ui_face_up:
 			card_ui.set_direction(Vector2.UP)
 		else:

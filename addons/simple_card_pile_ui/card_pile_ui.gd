@@ -17,6 +17,13 @@ enum Piles {
 	discard_pile
 }
 
+enum PilesCardLayouts {
+	up,
+	left,
+	right,
+	down
+}
+
 @export_file("*.json") var json_card_database_path : String
 @export_file("*.json") var json_card_collection_path : String
 @export var extended_card_ui : PackedScene
@@ -32,13 +39,13 @@ enum Piles {
 
 
 @export_group("Cards")
-@export var card_speed := 0.1
 @export var card_return_speed := 0.15
 
 @export_group("Draw Pile")
 @export var click_draw_pile_to_draw := true
 @export var cant_draw_at_hand_limit := true
 @export var shuffle_discard_on_empty_draw := true
+@export var draw_pile_layout := PilesCardLayouts.up
 
 @export_group("Hand Pile")
 @export var hand_enabled := true
@@ -55,6 +62,7 @@ enum Piles {
 
 @export_group("Discard Pile")
 @export var discard_face_up := true
+@export var discard_pile_layout := PilesCardLayouts.up
 
 
 var card_database := [] # an array of JSON `Card` data
@@ -232,10 +240,26 @@ func _set_draw_pile_target_positions(instantly_move = false):
 	for i in _draw_pile.size():
 		var card_ui = _draw_pile[i]
 		var target_pos = draw_pile_position
-		if i <= max_stack_display:
-			target_pos.y -= i * stack_display_gap
-		else:
-			target_pos.y -= stack_display_gap * max_stack_display
+		if draw_pile_layout == CardPileUI.PilesCardLayouts.up:
+			if i <= max_stack_display:
+				target_pos.y -= i * stack_display_gap
+			else:
+				target_pos.y -= stack_display_gap * max_stack_display
+		elif draw_pile_layout == CardPileUI.PilesCardLayouts.down:
+			if i <= max_stack_display:
+				target_pos.y += i * stack_display_gap
+			else:
+				target_pos.y += stack_display_gap * max_stack_display
+		elif draw_pile_layout == CardPileUI.PilesCardLayouts.right:
+			if i <= max_stack_display:
+				target_pos.x += i * stack_display_gap
+			else:
+				target_pos.x += stack_display_gap * max_stack_display
+		elif draw_pile_layout == CardPileUI.PilesCardLayouts.left:
+			if i <= max_stack_display:
+				target_pos.x -= i * stack_display_gap
+			else:
+				target_pos.x -= stack_display_gap * max_stack_display
 		card_ui.z_index = i
 		card_ui.rotation = 0
 		card_ui.target_position = target_pos
@@ -270,10 +294,26 @@ func _set_discard_pile_target_positions():
 	for i in _discard_pile.size():
 		var card_ui = _discard_pile[i]
 		var target_pos = discard_pile_position
-		if i <= max_stack_display:
-			target_pos.y -= i * stack_display_gap
-		else:
-			target_pos.y -= stack_display_gap * max_stack_display
+		if discard_pile_layout == CardPileUI.PilesCardLayouts.up:
+			if i <= max_stack_display:
+				target_pos.y -= i * stack_display_gap
+			else:
+				target_pos.y -= stack_display_gap * max_stack_display
+		elif draw_pile_layout == CardPileUI.PilesCardLayouts.down:
+			if i <= max_stack_display:
+				target_pos.y += i * stack_display_gap
+			else:
+				target_pos.y += stack_display_gap * max_stack_display
+		elif discard_pile_layout == CardPileUI.PilesCardLayouts.right:
+			if i <= max_stack_display:
+				target_pos.x += i * stack_display_gap
+			else:
+				target_pos.x += stack_display_gap * max_stack_display
+		elif discard_pile_layout == CardPileUI.PilesCardLayouts.left:
+			if i <= max_stack_display:
+				target_pos.x -= i * stack_display_gap
+			else:
+				target_pos.x -= stack_display_gap * max_stack_display
 		if discard_face_up:
 			card_ui.set_direction(Vector2.UP)
 		else:
@@ -344,7 +384,6 @@ func _create_card_ui(json_data : Dictionary):
 	var card_ui = extended_card_ui.instantiate()
 	card_ui.frontface_texture = json_data.texture_path
 	card_ui.backface_texture = json_data.backface_texture_path
-	card_ui.speed = card_speed
 	card_ui.return_speed = card_return_speed
 	card_ui.hover_distance = card_ui_hover_distance
 	card_ui.drag_when_clicked = drag_when_clicked

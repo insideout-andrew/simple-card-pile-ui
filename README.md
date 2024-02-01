@@ -19,6 +19,7 @@ This plugin provides a flexible and customizable card pile user interface for th
 	- [CardDropzone Methods](#card-dropzone-methods)
 	- [CardDropzone Properties](#card-dropzone-properties)
 - [Thanks](#thanks)
+- [Changelog](#change-log)
 
 
 <a name="features"></a>
@@ -207,4 +208,14 @@ Example:
 
 ---
 
-Version 1.0.0
+<a name="change-log"></a>
+
+## Changelog
+
+### 1.0.1 (2024-02-01)
+- Removes lerp when clicking a card
+- Fixes dropzone top card hover triggering when a card is clicked
+- Adds layout directions to piles and dropzones
+
+### 1.0.0 (2024-01-31)
+- Initial release

@@ -208,6 +208,7 @@ offset_bottom = 348.0
 script = ExtResource("4_cyr6y")
 accept_suit = "C"
 card_pile_ui = NodePath("../CardPileUI")
+layout = 1
 metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="CardDropzone_Clubs"]
@@ -239,6 +240,7 @@ offset_bottom = 344.0
 script = ExtResource("4_cyr6y")
 accept_suit = "S"
 card_pile_ui = NodePath("../CardPileUI")
+layout = 2
 metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="CardDropzone_Spades"]
@@ -267,6 +269,7 @@ script = ExtResource("3_axm7s")
 json_card_database_path = "res://example/example__card_database.json"
 json_card_collection_path = "res://example/example__card_collection.json"
 extended_card_ui = ExtResource("6_df1s4")
+draw_pile_layout = 2
 max_hand_size = 7
 hand_rotation_curve = SubResource("Curve_ayyaa")
 hand_vertical_curve = SubResource("Curve_afhc1")
