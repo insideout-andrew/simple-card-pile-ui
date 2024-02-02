@@ -1,7 +1,7 @@
 extends CardUI
 
 
-@onready var label := $FrontFaceTextureRect/Label
+@onready var label := $Frontface/Label
 
 
 func _ready():

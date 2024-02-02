@@ -8,11 +8,11 @@ class_name Example2CardUI extends CardUI
 @export var description : String
 
 
-@onready var cost_label = $FrontFaceTextureRect/CostLabel
-@onready var power_label = $FrontFaceTextureRect/PowerLabel
-@onready var name_label = $FrontFaceTextureRect/NameLabel
-@onready var type_label = $FrontFaceTextureRect/TypeLabel
-@onready var texture_rect_2 = $FrontFaceTextureRect/TextureRect2
+@onready var cost_label = $CostLabel
+@onready var power_label = $PowerLabel
+@onready var name_label = $NameLabel
+@onready var type_label = $TypeLabel
+@onready var texture_rect_2 = $TextureRect2
 
 
 func _ready():
@@ -36,4 +36,3 @@ func _update_display():
 		texture_rect_2.modulate = Color.AQUA
 	else:
 		power_label.visible = false
-		

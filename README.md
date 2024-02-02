@@ -39,26 +39,28 @@ This plugin provides a flexible and customizable card pile user interface for th
 <a name="getting-started"></a>
 ## Getting Started
 
-1. Create a JSON database of your cards ([example](#json-database)).
-2. Create a JSON collection of your cards ([example](#json-collection)).
-3. Create a resource script extending `CardUIData` that describes any custom properties in your JSON database.
-4. Create and save an inherited scene of `CardUI`. Add custom functionality as needed. *Note: if your cards don't need more nodes than a simple front/back texture, then you can skip this part and use the plugin's provided basic CardUI scene.*
+1. Create a script extending `CardUIData` that describes any custom properties your card will need. You can utlize inheritance here as needed. 
+2. Create a JSON database of your card information ([example](#json-database)).
+3. Create a JSON collection of your cards ([example](#json-collection)).
+4. Create a new scene with root type `CardUI` - this is the object that displays in game. This object must have 2 TextureRect as children named `Frontface` and `Backface`. It will warn you if configured incorrectly. 
 5. Add a `CardPileUI` node to your game scene and configure its settings.
 6. Begin building your game with the provided methods and signals.
 
 <a name="concepts"></a>
 ## Concepts
-**Card Pile UI**, this is the manager for all cards in a collection.
+**Card Pile UI** - this is the manager for all cards in a collection.
 
-**Card**, this represents a card/data that can be moved between different piles and custom piles, referred to as CardDropzones.
+**Card UI Data** - this represents any custom data that your cards use.
 
-**Draw Pile**, this is a pile containing cards that a player draws from during the game.
+**Card UI** - this is the in-game representation of your card data, this holds and displays **Card UI Data**
 
-**Hand Pile**, this is a pile containing cards currently held by a player.
+**Card Dropzone** - this is a designated space where if a player drops a card something occurs. It can also stack cards, removing them from the standard draw/hand/discard piles.
 
-**Discard Pile**, this is a pile containing cards that have been discarded during the game.
+**Draw Pile** - this is a pile containing cards that a player draws from during the game.
 
-**Card Dropzone**, this is a designated space where if a player drops a card, a specific action or event occurs.
+**Hand Pile** - this is a pile containing cards currently held by a player.
+
+**Discard Pile** - this is a pile containing cards that have been discarded during the game.
 
 **Card Removal from Game**, this occurs when a card is permanently removed from play
 
@@ -73,7 +75,7 @@ This plugin provides a flexible and customizable card pile user interface for th
 | *Top Level* |-|-|-
 | String | json_card_database_path | null | Specifies the file path for the JSON database containing card information
 | String | json_card_collection_path | null | Defines the file path for the JSON file containing the card collection
-| PackedScene | extended_card_ui | null | A PackedScene for your extended/inherited `CardUI` scene.
+| PackedScene | extended_card_ui | null | A PackedScene for your extended `CardUI` scene.
 | *Pile Positions* |-|-|-
 | Vector2 | draw_pile_position | Vector2(20, 460) | Determines the position of the draw pile on the game screen.
 | Vector2 | hand_pile_position | Vector2(630, 460) | Determines the position of the hand pile on the game screen.
@@ -87,6 +89,7 @@ This plugin provides a flexible and customizable card pile user interface for th
 | bool | click_draw_pile_to_draw | true | Clicking the draw pile will trigger the `draw` method
 | bool | cant_draw_at_hand_limit | true | If hand is at max capacity, then the `draw` method is ignored. Otherwise cards that are drawn are immediately discarded
 | bool | shuffle_discard_on_empty_draw | true | Enables automatic shuffling of the discard pile into the draw pile when the draw pile is empty.
+| CardPileUI.PilesCardLayouts | draw_pile_layout | CardPileUI.PilesCardLayouts.up | Determines which direction the pile stacks
 | *Hand Pile* |-|-|-
 | bool | hand_enabled | true | Enables or disables the hand pile functionality.
 | bool | hand_face_up | true | Determines whether cards in the hand pile are face up or face down.
@@ -97,6 +100,7 @@ This plugin provides a flexible and customizable card pile user interface for th
 | Curve | hand_vertical_curve | null | A curve for vertical hand movement. This works best as a 3-point line, easing in/out from 0 to Y to 0
 | *Discard Pile* |-|-|-
 | bool | discard_face_up | true | Determines whether cards in the discard pile are face up or face down.
+| CardPileUI.PilesCardLayouts | discard_pile_layout | CardPileUI.PilesCardLayouts.up | Determines which direction the pile stacks
 
 <a name="card-pile-ui-methods"></a>
 ### CardPileUI Methods
@@ -144,6 +148,7 @@ This plugin provides a flexible and customizable card pile user interface for th
 | bool | card_ui_face_up | true | Indicates if piled cards should be face up |
 | int | stack_display_gap | 8 | Sets the gap between displayed cards in a stack.
 | int | max_stack_display | 6 | Defines the maximum number of cards displayed in a stack.
+| CardPileUI.PilesCardLayouts | discard_pile_layout | CardPileUI.PilesCardLayouts.up | Determines which direction the pile stacks
 
 <a name="card-dropzone-methods"></a>
 ### CardDropzone Methods
@@ -211,6 +216,9 @@ Example:
 <a name="change-log"></a>
 
 ## Changelog
+
+### 1.1.0 (2024-02-02)
+- Updates CardUI to work better
 
 ### 1.0.1 (2024-02-01)
 - Removes lerp when clicking a card

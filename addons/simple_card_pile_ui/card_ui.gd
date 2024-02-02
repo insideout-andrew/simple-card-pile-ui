@@ -1,3 +1,4 @@
+@tool
 class_name CardUI extends Control
 
 
@@ -7,8 +8,8 @@ signal card_clicked(card: CardUI)
 signal card_dropped(card: CardUI)
 
 
-@onready var frontface = $FrontFaceTextureRect 
-@onready var backface = $BackFaceTextureRect
+@onready var frontface = $Frontface
+@onready var backface = $Backface
 
 
 @export var card_data : CardUIData
@@ -27,9 +28,9 @@ func get_class(): return "CardUI"
 func is_class(name): return name == "CardUI"
 
 
-func set_direction(dir : Vector2):
-	backface.visible = dir == Vector2.DOWN
-	frontface.visible = dir == Vector2.UP
+func set_direction(card_is_facing : Vector2):
+	backface.visible = card_is_facing == Vector2.DOWN
+	frontface.visible = card_is_facing == Vector2.UP
 
 func set_disabled(val : bool):
 	if val:
@@ -41,6 +42,10 @@ func set_disabled(val : bool):
 			parent.reset_card_ui_z_index()
 			
 func _ready():
+	if Engine.is_editor_hint():
+		set_disabled(true)
+		update_configuration_warnings()
+		return
 	connect("mouse_entered", _on_mouse_enter)
 	connect("mouse_exited", _on_mouse_exited)
 	connect("gui_input", _on_gui_input)
@@ -135,3 +140,16 @@ func _process(_delta):
 	elif position != target_position:
 		position = lerp(position, target_position, return_speed)
 		
+	if Engine.is_editor_hint() and last_child_count != get_child_count():
+		update_configuration_warnings()
+		last_child_count = get_child_count()
+
+var last_child_count = 0
+
+func _get_configuration_warnings():
+	if get_child_count() != 2:
+		return [ "This node must have 2 TextureRect as children, one named `Frontface` and one named `Backface`." ]
+	for child in get_children():
+		if not child is TextureRect or (child.name != "Frontface" and child.name != "Backface"):
+			return [ "This node must have 2 TextureRect as children, one named `Frontface` and one named `Backface`." ]
+	return []

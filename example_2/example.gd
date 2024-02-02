@@ -12,6 +12,7 @@ extends Node2D
 
 # seems like these 3 properties would make more sense in as a singleton in a real game?
 var starting_mana := 4
+var current_hovered_card : CardUI
 
 var block := 0 :
 	set(val):
@@ -28,9 +29,11 @@ func _ready():
 	card_pile_ui.connect("card_hovered", func(card_ui):
 		rich_text_label.text = card_ui.card_data.format_description()
 		panel_container.visible = true
+		current_hovered_card = card_ui
 	)
 	card_pile_ui.connect("card_unhovered", func(_card_ui):
 		panel_container.visible = false
+		current_hovered_card = null
 	)
 	card_pile_ui.connect("card_clicked", func(card_ui):
 		targeting_line_2d.set_point_position(0, card_ui.position + card_ui.size * 0.5)
@@ -52,8 +55,9 @@ func _update_display():
 	block_label.text = "%s" % [ block ]
 
 func _process(_delta):
-	var target_pos = get_global_mouse_position()
-	target_pos.y -= panel_container.size.y * 0.5
-	target_pos.x += 40
-	panel_container.position = target_pos
-	targeting_line_2d.set_point_position(1, get_global_mouse_position())
+	if current_hovered_card:
+		var target_pos = current_hovered_card.position
+		target_pos.y += 80
+		target_pos.x += 180
+		panel_container.position = target_pos
+		targeting_line_2d.set_point_position(1, get_global_mouse_position())
