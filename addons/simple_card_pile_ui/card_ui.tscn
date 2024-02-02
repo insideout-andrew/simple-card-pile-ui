@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce07n5qa1axee"]
+[gd_scene load_steps=2 format=3 uid="uid://dnt4pku64ytnl"]
 
 [ext_resource type="Script" path="res://addons/simple_card_pile_ui/card_ui.gd" id="1_v1sf0"]
 

@@ -54,6 +54,7 @@ func _ready():
 		backface.texture = load(backface_texture)
 		custom_minimum_size = frontface.texture.get_size()
 		pivot_offset = frontface.texture.get_size() / 2
+		mouse_filter = Control.MOUSE_FILTER_PASS
 
 
 
