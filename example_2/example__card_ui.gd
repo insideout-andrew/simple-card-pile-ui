@@ -8,11 +8,11 @@ class_name Example2CardUI extends CardUI
 @export var description : String
 
 
-@onready var cost_label = $CostLabel
-@onready var power_label = $PowerLabel
-@onready var name_label = $NameLabel
-@onready var type_label = $TypeLabel
-@onready var texture_rect_2 = $TextureRect2
+@onready var cost_label = $Frontface/CostLabel
+@onready var power_label = $Frontface/PowerLabel
+@onready var name_label = $Frontface/NameLabel
+@onready var type_label = $Frontface/TypeLabel
+@onready var texture_rect_2 = $Frontface/TextureRect2
 
 
 func _ready():
